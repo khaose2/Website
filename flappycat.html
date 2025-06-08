@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PyGame-CE + Pyodide Minimal Test</title>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+</head>
+<body style="background:#222;">
+  <canvas id="game-canvas" width="640" height="480" tabindex="0"></canvas>
+  <div id="loading">Loading Pyodide...</div>
+  <script>
+    async function main() {
+      const loading = document.getElementById('loading');
+      loading.innerText = 'Loading Pyodide...';
+      let pyodide = await loadPyodide();
+
+      // Use older pygame-ce for best compatibility with 0.26.1
+      await pyodide.loadPackage([
+        "https://cdn.jsdelivr.net/pyodide/0.26.1/full/pyodide-py-pygame-ce-2.3.2.tar.bz2"
+      ]);
+      loading.innerText = 'Starting PyGame...';
+
+      await pyodide.runPythonAsync(`
+import os
+os.environ['SDL_EMSCRIPTEN_CANVAS_SELECTOR'] = '#game-canvas'
+import pygame
+pygame.init()
+screen = pygame.display.set_mode((640,480))
+pygame.display.set_caption("Test")
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT: running = False
+    screen.fill((34,53,73))
+    pygame.draw.circle(screen, (243,156,18), (320,240), 100)
+    pygame.display.flip()
+pygame.quit()
+      `);
+      loading.style.display = 'none';
+    }
+    main();
+  </script>
+</body>
+</html>
