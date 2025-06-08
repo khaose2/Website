@@ -461,6 +461,322 @@
       .mobile-comparison { display:none }
       .comparison-table table { display:table }
     }
+
+    /* New Pet Browser styles */
+    .modal-content-pet {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 16px 44px 16px;
+      color: #334155;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    #pet-modal header {
+      text-align: center;
+      margin: 38px 0 18px 0;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 20px;
+      background: transparent;
+      box-shadow: none;
+      position: relative;
+      z-index: auto;
+      justify-content: center;
+    }
+
+    #pet-modal .page-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #0f766e;
+      margin-bottom: 0.15em;
+    }
+
+    #pet-modal .subtitle {
+      color: #64748b;
+      font-size: 1.13rem;
+      margin-bottom: 0.6em;
+    }
+
+    .controls-card {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 2px 12px 0 rgba(51, 65, 85, 0.07);
+      padding: 1.5em 1em 1em 1em;
+      margin: 0 auto 28px auto;
+      max-width: 900px;
+    }
+
+    .controls-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.6fr;
+      gap: 1em;
+      align-items: end;
+    }
+
+    @media (max-width: 800px) {
+      .controls-grid { grid-template-columns: 1fr; }
+    }
+
+    .filter-select, .search-input {
+      width: 100%;
+      padding: 0.85em 1.05em;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 0.5em;
+      background: #fff;
+      font-size: 1.09em;
+      color: #334155;
+      box-shadow: 0 1px 4px rgba(100,116,139,0.07);
+      transition: border 0.18s, box-shadow 0.18s;
+    }
+
+    .filter-select:focus, .search-input:focus {
+      border-color: #14b8a6;
+      box-shadow: 0 0 0 2px rgba(20,184,166,0.21);
+      outline: none;
+    }
+
+    .search-row {
+      display: flex;
+      width: 100%;
+    }
+
+    .search-input {
+      flex: 1 1 auto;
+      border-radius: 0.5em 0 0 0.5em;
+      border-right: none;
+      font-size: 1.06em;
+    }
+
+    .search-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0d9488;
+      color: #fff;
+      border: none;
+      border-radius: 0 0.5em 0.5em 0;
+      padding: 0 1.08em;
+      cursor: pointer;
+      font-size: 1.15em;
+      transition: background 0.13s;
+    }
+
+    .search-button:hover, .search-button:focus {
+      background: #0f766e;
+      outline: none;
+    }
+
+    .pet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.4em;
+      margin-top: 2em;
+      min-height: 320px;
+    }
+
+    .pet-card {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 4px 24px 0 rgba(51,65,85,0.10);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.14s, box-shadow 0.13s;
+      border: 1.5px solid #e2e8f0;
+    }
+
+    .pet-card:hover, .pet-card:focus-visible {
+      transform: translateY(-3px) scale(1.023);
+      box-shadow: 0 10px 32px 0 rgba(20,184,166,0.18);
+      border-color: #14b8a6;
+      outline: none;
+    }
+
+    .pet-photo {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      background: #f1f5f9;
+      min-height: 170px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .pet-details {
+      padding: 1.08em 1em 0.9em 1em;
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      color: #334155;
+    }
+
+    .pet-name {
+      font-size: 1.22em;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 0.25em;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      max-width: 100%;
+    }
+
+    .pet-row {
+      font-size: 0.98em;
+      color: #64748b;
+      margin-bottom: 0.07em;
+    }
+
+    .pet-card .view-profile {
+      margin-top: auto;
+      padding-top: 1em;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+    }
+
+    .view-profile span {
+      color: #0d9488;
+      font-weight: 500;
+      text-decoration: none;
+      transition: text-decoration 0.13s;
+    }
+
+    .pet-card:hover .view-profile span,
+    .pet-card:focus-visible .view-profile span {
+      text-decoration: underline;
+    }
+
+    /* Loading spinner */
+    .loading-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+      height: 40vh;
+      width: 100%;
+      flex-direction: column;
+      grid-column: 1 / -1;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 56px;
+      height: 56px;
+      border: 6px solid #14b8a6;
+      border-bottom-color: transparent;
+      border-radius: 50%;
+      margin-bottom: 1.4em;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0%   { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+
+    /* Modal styling */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1em;
+      transition: opacity 0.25s;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-radius: 1.1rem;
+      box-shadow: 0 8px 40px rgba(20,184,166,0.13);
+      width: 100%;
+      max-width: 600px;
+      max-height: 94vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: modalFadeIn 0.22s;
+      position: relative;
+    }
+
+    @keyframes modalFadeIn {
+      from { transform: translateY(40px) scale(0.98); opacity: 0; }
+      to { transform: none; opacity: 1; }
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.18em 1.3em 1em 1.3em;
+      border-bottom: 1px solid #e2e8f0;
+      background: #fff;
+      flex-shrink: 0;
+    }
+
+    .modal-header h2 {
+      font-size: 1.4em;
+      font-weight: 600;
+      color: #0f766e;
+      margin: 0;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: #64748b;
+      font-size: 2em;
+      cursor: pointer;
+      padding: 0.2em 0.5em;
+      border-radius: 50%;
+      transition: background 0.11s, color 0.11s;
+    }
+
+    .modal-close:hover, .modal-close:focus {
+      background: #e0f2fe;
+      color: #0d9488;
+      outline: none;
+    }
+
+    .modal-iframe-container {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      position: relative;
+      background: #fff;
+    }
+
+    .modal-iframe {
+      display: block;
+      width: 100%;
+      height: 60vh;
+      min-height: 280px;
+      border: none;
+      background: #fff;
+      flex: 1 1 auto;
+    }
+
+    .modal-error {
+      position: absolute;
+      inset: 0;
+      background: #fff;
+      padding: 2em 1.5em;
+      color: #dc2626;
+      font-size: 1.1em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
   </style>
 </head>
 <body>
@@ -525,12 +841,121 @@
           Individual Membership Plans
         </h2>
         <div class="cards">
-          <div class="card" data-delay="0.05s"> <h3 class="glow-loyal">💖 Loyal Companion</h3> <p>Variable Monthly Membership</p> <div class="benefits"> <div class="benefit-item">📧 Members-only Newsfeed</div> <div class="benefit-item">💬 Community Updates & Invites</div> </div> <div class="card-footer"> <div class="qr-link" tabindex="0" data-url="https://app.betterunite.com/adopthsmc-loyalcompanioncampaign?embedded=true"> <div class="qr-code" data-src="https://i.imgur.com/84Mb6jN.png"></div> </div> <button class="join-btn" onclick="openMembershipModal()"> Join Now </button> </div> </div>
-          <div class="card" data-delay="0.1s"> <h3 class="glow-silver">🐱 Kitty Love</h3> <p>$45 / year Membership</p> <div class="benefits"> <div class="benefit-item">🎟️ Membership Card</div> <div class="benefit-item">🗳️ One Vote at Annual Meeting</div> <div class="benefit-item">🎫 10% Off In-Store Shirt Coupon</div> <div class="benefit-item">🧸 Pet-toy Coupon</div> <div class="benefit-item">✅ Includes all Loyal Companion benefits</div> </div> <div class="card-footer"> <div class="qr-link" tabindex="0" data-url="https://app.betterunite.com/hsmc-becomeamembertoday?embedded=true"> <div class="qr-code" data-src="https://i.imgur.com/4NLunsW.png"></div> </div> <button class="join-btn" onclick="openMembershipModal()"> Join Now </button> </div> </div>
-          <div class="card" data-delay="0.15s"> <h3 class="glow-gold">🐶 Puppy Pack</h3> <p>$65 / year Membership</p> <div class="benefits"> <div class="benefit-item">🧸 Additional Pet-toy Coupon</div> <div class="benefit-item">✅ Includes previous tier benefits</div> </div> <div class="card-footer"> <div class="qr-link" tabindex="0" data-url="https://app.betterunite.com/hsmc-becomeamembertoday?embedded=true"> <div class="qr-code" data-src="https://i.imgur.com/4NLunsW.png"></div> </div> <button class="join-btn" onclick="openMembershipModal()"> Join Now </button> </div> </div>
-          <div class="card" data-delay="0.2s"> <h3 class="glow-diamond">🐶 Pug Pack</h3> <p>$100 / year Membership</p> <div class="benefits"> <div class="benefit-item">👕 HSMC T-Shirt Coupon</div> <div class="benefit-item">✅ Includes previous tier benefits</div> </div> <div class="card-footer"> <div class="qr-link" tabindex="0" data-url="https://app.betterunite.com/hsmc-becomeamembertoday?embedded=true"> <div class="qr-code" data-src="https://i.imgur.com/4NLunsW.png"></div> </div> <button class="join-btn" onclick="openMembershipModal()"> Join Now </button> </div> </div>
-          <div class="card" data-delay="0.25s"> <h3 class="glow-rainbow">🐾 Bulldog Pack</h3> <p>$250 / year Membership</p> <div class="benefits"> <div class="benefit-item">🗳️🗳️ Two Votes at Annual Meeting</div> <div class="benefit-item">🎫 20% Off Storewide Coupon</div> <div class="benefit-item">🍖 Pet Treat Coupon</div> <div class="benefit-item">👕👕 Two T-Shirt Coupons</div> <div class="benefit-item">✅ Includes previous tier benefits</div> </div> <div class="card-footer"> <div class="qr-link" tabindex="0" data-url="https://app.betterunite.com/hsmc-becomeamembertoday?embedded=true"> <div class="qr-code" data-src="https://i.imgur.com/4NLunsW.png"></div> </div> <button class="join-btn" onclick="openMembershipModal()"> Join Now </button> </div> </div>
-          <div class="card" data-delay="0.3s"> <h3 class="glow-rainbow">🐾 Catnip Patron</h3> <p>$500 / year Membership</p> <div class="benefits"> <div class="benefit-item">📰 Newsletter Recognition</div> <div class="benefit-item">🎫 $25 Gift Coupon</div> <div class="benefit-item">🚀 Priority Program Access</div> <div class="benefit-item">✅ Includes previous tier benefits</div> </div> <div class="card-footer"> <div class="qr-link" tabindex="0" data-url="https://app.betterunite.com/adopthsmc-catnippatron?embedded=true"> <div class="qr-code" data-src="https://i.imgur.com/TxmD348.png"></div> </div> <button class="join-btn" onclick="openMembershipModal()"> Join Now </button> </div> </div>
+          <div class="card" data-delay="0.05s"> 
+            <h3 class="glow-loyal">💖 Loyal Companion</h3> 
+            <p>Variable Monthly Membership</p> 
+            <div class="benefits"> 
+              <div class="benefit-item">📧 Members-only Newsfeed</div> 
+              <div class="benefit-item">💬 Community Updates & Invites</div> 
+            </div> 
+            <div class="card-footer"> 
+              <div class="qr-link" tabindex="0" role="button" aria-label="Join Loyal Companion membership" data-url="https://app.betterunite.com/adopthsmc-loyalcompanioncampaign?embedded=true"> 
+                <div class="qr-code" data-src="https://i.imgur.com/84Mb6jN.png"></div> 
+              </div> 
+              <button class="join-btn" onclick="openMembershipModal()" aria-describedby="loyal-companion-desc"> 
+                Join Now 
+              </button> 
+              <div id="loyal-companion-desc" class="visually-hidden">Join the Loyal Companion membership tier</div>
+            </div> 
+          </div>
+          
+          <div class="card" data-delay="0.1s"> 
+            <h3 class="glow-silver">🐱 Kitty Love</h3> 
+            <p>$45 / year Membership</p> 
+            <div class="benefits"> 
+              <div class="benefit-item">🎟️ Membership Card</div> 
+              <div class="benefit-item">🗳️ One Vote at Annual Meeting</div> 
+              <div class="benefit-item">🎫 10% Off In-Store Shirt Coupon</div> 
+              <div class="benefit-item">🧸 Pet-toy Coupon</div> 
+              <div class="benefit-item">✅ Includes all Loyal Companion benefits</div> 
+            </div> 
+            <div class="card-footer"> 
+              <div class="qr-link" tabindex="0" role="button" aria-label="Join Kitty Love membership" data-url="https://app.betterunite.com/hsmc-becomeamembertoday?embedded=true"> 
+                <div class="qr-code" data-src="https://i.imgur.com/4NLunsW.png"></div> 
+              </div> 
+              <button class="join-btn" onclick="openMembershipModal()" aria-describedby="kitty-love-desc"> 
+                Join Now 
+              </button> 
+              <div id="kitty-love-desc" class="visually-hidden">Join the Kitty Love membership tier for $45 per year</div>
+            </div> 
+          </div>
+          
+          <div class="card" data-delay="0.15s"> 
+            <h3 class="glow-gold">🐶 Puppy Pack</h3> 
+            <p>$65 / year Membership</p> 
+            <div class="benefits"> 
+              <div class="benefit-item">🧸 Additional Pet-toy Coupon</div> 
+              <div class="benefit-item">✅ Includes previous tier benefits</div> 
+            </div> 
+            <div class="card-footer"> 
+              <div class="qr-link" tabindex="0" role="button" aria-label="Join Puppy Pack membership" data-url="https://app.betterunite.com/hsmc-becomeamembertoday?embedded=true"> 
+                <div class="qr-code" data-src="https://i.imgur.com/4NLunsW.png"></div> 
+              </div> 
+              <button class="join-btn" onclick="openMembershipModal()" aria-describedby="puppy-pack-desc"> 
+                Join Now 
+              </button> 
+              <div id="puppy-pack-desc" class="visually-hidden">Join the Puppy Pack membership tier for $65 per year</div>
+            </div> 
+          </div>
+          
+          <div class="card" data-delay="0.2s"> 
+            <h3 class="glow-diamond">🐶 Pug Pack</h3> 
+            <p>$100 / year Membership</p> 
+            <div class="benefits"> 
+              <div class="benefit-item">👕 HSMC T-Shirt Coupon</div> 
+              <div class="benefit-item">✅ Includes previous tier benefits</div> 
+            </div> 
+            <div class="card-footer"> 
+              <div class="qr-link" tabindex="0" role="button" aria-label="Join Pug Pack membership" data-url="https://app.betterunite.com/hsmc-becomeamembertoday?embedded=true"> 
+                <div class="qr-code" data-src="https://i.imgur.com/4NLunsW.png"></div> 
+              </div> 
+              <button class="join-btn" onclick="openMembershipModal()" aria-describedby="pug-pack-desc"> 
+                Join Now 
+              </button> 
+              <div id="pug-pack-desc" class="visually-hidden">Join the Pug Pack membership tier for $100 per year</div>
+            </div> 
+          </div>
+          
+          <div class="card" data-delay="0.25s"> 
+            <h3 class="glow-rainbow">🐾 Bulldog Pack</h3> 
+            <p>$250 / year Membership</p> 
+            <div class="benefits"> 
+              <div class="benefit-item">🗳️🗳️ Two Votes at Annual Meeting</div> 
+              <div class="benefit-item">🎫 20% Off Storewide Coupon</div> 
+              <div class="benefit-item">🍖 Pet Treat Coupon</div> 
+              <div class="benefit-item">👕👕 Two T-Shirt Coupons</div> 
+              <div class="benefit-item">✅ Includes previous tier benefits</div> 
+            </div> 
+            <div class="card-footer"> 
+              <div class="qr-link" tabindex="0" role="button" aria-label="Join Bulldog Pack membership" data-url="https://app.betterunite.com/hsmc-becomeamembertoday?embedded=true"> 
+                <div class="qr-code" data-src="https://i.imgur.com/4NLunsW.png"></div> 
+              </div> 
+              <button class="join-btn" onclick="openMembershipModal()" aria-describedby="bulldog-pack-desc"> 
+                Join Now 
+              </button> 
+              <div id="bulldog-pack-desc" class="visually-hidden">Join the Bulldog Pack membership tier for $250 per year</div>
+            </div> 
+          </div>
+          
+          <div class="card" data-delay="0.3s"> 
+            <h3 class="glow-rainbow">🐾 Catnip Patron</h3> 
+            <p>$500 / year Membership</p> 
+            <div class="benefits"> 
+              <div class="benefit-item">📰 Newsletter Recognition</div> 
+              <div class="benefit-item">🎫 $25 Gift Coupon</div> 
+              <div class="benefit-item">🚀 Priority Program Access</div> 
+              <div class="benefit-item">✅ Includes previous tier benefits</div> 
+            </div> 
+            <div class="card-footer"> 
+              <div class="qr-link" tabindex="0" role="button" aria-label="Join Catnip Patron membership" data-url="https://app.betterunite.com/adopthsmc-catnippatron?embedded=true"> 
+                <div class="qr-code" data-src="https://i.imgur.com/TxmD348.png"></div> 
+              </div> 
+              <button class="join-btn" onclick="openMembershipModal()" aria-describedby="catnip-patron-desc"> 
+                Join Now 
+              </button> 
+              <div id="catnip-patron-desc" class="visually-hidden">Join the Catnip Patron membership tier for $500 per year</div>
+            </div> 
+          </div>
         </div>
       </section>
 
@@ -590,23 +1015,66 @@
     </main>
   </div> <button id="back-to-top" aria-label="Back to top">↑</button>
 
-  <div id="pet-modal" class="feature-container" role="dialog" aria-modal="true" aria-labelledby="pet-modal-title"> 
-    <h2 id="pet-modal-title" class="visually-hidden">Adoptable Pets</h2>
-    <button class="close-modal-btn" aria-label="Close pet modal">✖</button> 
-    <div class="iframe-container"> 
-        <div class="loading-overlay" id="pet-loading"> 
-            <div class="pet-spinner"></div> 
-            <div class="loading-text">Finding Furry Friends</div> 
-            <div class="loading-subtext">Please wait while we fetch the latest pets available for adoption.</div> 
-        </div> 
-        <iframe id="pet-iframe" data-src="https://ws.petango.com/webservices/adoptablesearch/wsAdoptableAnimals2.aspx?species=All&gender=A&agegroup=All&location=&site=&onhold=A&orderby=Name&colnum=4&css=&authkey=40fm1dbi1t4267edhjlafrfmbgfqfvmi0vjjm3iori7pxqk8xp&recAmount=&detailsInPopup=Yes&featuredPet=Include&stageID=" title="Adoptable Animals Search" scrolling="auto" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" loading="lazy"> </iframe> 
-    </div> 
-    <div class="pet-modal-footer"> 
-        <div class="pet-disclaimer">These pets are waiting for their forever homes! ❤️ Check back often for updates.</div> 
-        <div class="pet-controls"> 
-            <button class="refresh-pets-btn" onclick="refreshPets()">Refresh Pets</button> 
-        </div> 
-    </div> 
+  <div id="pet-modal" class="feature-container" role="dialog" aria-modal="true" aria-labelledby="pet-modal-title">
+    <button class="close-modal-btn" aria-label="Close pet modal">✖</button>
+    <div class="modal-content-pet">
+      <header>
+        <h1 class="page-title" id="pet-modal-title">Adoptable Pets</h1>
+        <div class="subtitle">Find your new best friend!</div>
+      </header>
+      <div class="controls-card">
+        <div class="controls-grid">
+          <div>
+            <label for="speciesFilter">Species</label>
+            <select id="speciesFilter" class="filter-select">
+              <option value="">All Species</option>
+            </select>
+          </div>
+          <div>
+            <label for="genderFilter">Gender</label>
+            <select id="genderFilter" class="filter-select">
+              <option value="">All Genders</option>
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
+            </select>
+          </div>
+          <div>
+            <label for="search">Search</label>
+            <div class="search-row">
+              <input type="text" id="search" class="search-input" placeholder="Name, breed, etc.">
+              <button id="searchButton" class="search-button" aria-label="Search Pets">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="22" height="22">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pet-grid" id="petGrid">
+        <div class="loading-container">
+          <div class="spinner"></div>
+          <p style="font-size:1.15em; color:#64748b;">Loading pets…</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal-overlay" id="modalOverlay" tabindex="-1">
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-header">
+          <h2 id="modalTitle">Pet Profile</h2>
+          <button class="modal-close" id="modalClose" aria-label="Close modal">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" width="30" height="30">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-iframe-container">
+          <iframe class="modal-iframe" id="modalIframe" src="about:blank" title="Petango Profile"></iframe>
+          <div class="modal-error" id="modalError" style="display:none;">No profile available for this pet.</div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div id="terms-modal" class="feature-container" role="dialog" aria-modal="true" aria-labelledby="terms-modal-title"> 
@@ -629,51 +1097,114 @@
   </div>
 
   <script>
-    // Centralized Body Overflow Management (no changes here)
+    // Centralized Body Overflow Management
     const bodyOverflowRequesters = new Set();
     const NO_SCROLL_CLASS = 'body-no-scroll';
-    let previouslyFocusedElement = null; // To store focus before modal opens
+    let previouslyFocusedElement = null;
 
-    function requestBodyOverflowHidden(requesterId) { if (!requesterId) { return; } const isFirstRequester = bodyOverflowRequesters.size === 0; bodyOverflowRequesters.add(requesterId); if (isFirstRequester) { document.body.style.overflow = 'hidden'; document.body.classList.add(NO_SCROLL_CLASS); } if (typeof resizeCanvas === 'function') resizeCanvas(); }
-    function releaseBodyOverflowHidden(requesterId) { if (!requesterId) { return; } bodyOverflowRequesters.delete(requesterId); if (bodyOverflowRequesters.size === 0) { document.body.style.overflow = ''; document.body.classList.remove(NO_SCROLL_CLASS); } if (typeof resizeCanvas === 'function') resizeCanvas(); }
+    function requestBodyOverflowHidden(requesterId) { 
+      if (!requesterId) return; 
+      const isFirstRequester = bodyOverflowRequesters.size === 0; 
+      bodyOverflowRequesters.add(requesterId); 
+      if (isFirstRequester) { 
+        document.body.style.overflow = 'hidden'; 
+        document.body.classList.add(NO_SCROLL_CLASS); 
+      } 
+      if (typeof resizeCanvas === 'function') resizeCanvas(); 
+    }
+    
+    function releaseBodyOverflowHidden(requesterId) { 
+      if (!requesterId) return; 
+      bodyOverflowRequesters.delete(requesterId); 
+      if (bodyOverflowRequesters.size === 0) { 
+        document.body.style.overflow = ''; 
+        document.body.classList.remove(NO_SCROLL_CLASS); 
+      } 
+      if (typeof resizeCanvas === 'function') resizeCanvas(); 
+    }
+
+    // Performance optimization: Cache DOM elements
+    const elements = {};
+    
+    function initializeElements() {
+      elements.btnP = document.getElementById('btn-personal');
+      elements.btnB = document.getElementById('btn-business');
+      elements.secP = document.getElementById('personal');
+      elements.secB = document.getElementById('business');
+      elements.tableP = document.getElementById('personal-table');
+      elements.tableB = document.getElementById('business-table');
+      elements.toggleP = document.getElementById('toggle-personal-table');
+      elements.toggleB = document.getElementById('toggle-business-table');
+      elements.backBtn = document.getElementById('back-to-top');
+      elements.canvas = document.getElementById('starry-canvas');
+      elements.ctx = elements.canvas?.getContext('2d');
+      elements.petModal = document.getElementById('pet-modal');
+      elements.termsModal = document.getElementById('terms-modal');
+      elements.memModal = document.getElementById('membership-modal');
+      elements.buEmbedHost = document.getElementById('bu-embed-host');
+      elements.spinner = elements.memModal?.querySelector('.modal-spinner');
+      elements.hamburgerBtn = document.getElementById('hamburger-btn');
+      elements.hamburgerMenu = document.getElementById('hamburger-menu');
+      elements.closeMenuBtn = elements.hamburgerMenu?.querySelector('.close-menu-btn');
+      elements.mobileBtnP = document.getElementById('mobile-btn-personal');
+      elements.mobileBtnB = document.getElementById('mobile-btn-business');
+    }
+
+    // Improved debounce function with immediate execution option
+    function debounce(func, wait, immediate = false) { 
+      let timeout; 
+      return function executedFunction(...args) { 
+        const later = () => { 
+          timeout = null; 
+          if (!immediate) func.apply(this, args); 
+        }; 
+        const callNow = immediate && !timeout; 
+        clearTimeout(timeout); 
+        timeout = setTimeout(later, wait); 
+        if (callNow) func.apply(this, args); 
+      }; 
+    }
 
     document.addEventListener('DOMContentLoaded', () => {
+      initializeElements();
       updateTables();  
       if(window.innerWidth >= 600) reanimate('personal', true);
 
-      // Smooth scroll for skip link
+      // Improved skip link with better accessibility
       const skipLink = document.querySelector('.skip-link');
       if (skipLink) {
-          skipLink.addEventListener('click', function(e) {
-              e.preventDefault();
-              const targetId = this.getAttribute('href').substring(1);
-              const targetElement = document.getElementById(targetId);
-              if (targetElement) {
-                  targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-          });
+        skipLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            targetElement.focus({ preventScroll: true });
+          }
+        });
       }
 
-      // Animate Core Benefits section
+      // Optimize Core Benefits animation with better performance
       const coreBenefitsSection = document.querySelector('.core-benefits');
-      if (coreBenefitsSection) {
-          const coreBenefitsObserver = new IntersectionObserver((entries) => {
-              entries.forEach(entry => {
-                  if (entry.isIntersecting) {
-                      entry.target.classList.add('is-visible');
-                      coreBenefitsObserver.unobserve(entry.target);
-                  }
-              });
-          }, { threshold: 0.2 }); // Trigger when 20% is visible
-          coreBenefitsObserver.observe(coreBenefitsSection);
+      if (coreBenefitsSection && 'IntersectionObserver' in window) {
+        const coreBenefitsObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              coreBenefitsObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+        coreBenefitsObserver.observe(coreBenefitsSection);
       }
 
-
+      // Fixed and optimized intersection observer for cards
       if ('IntersectionObserver' in window) {
         const cardObserverOptions = {
-          rootMargin: '0px 0px 0px 0px', 
-          threshold: 0.01 
+          rootMargin: '0px 0px -10% 0px', 
+          threshold: 0.1 
         };
+        
         const cardObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -689,239 +1220,818 @@
           cardObserver.observe(card);
         });
 
+        // Optimize QR code loading with better error handling
         const qrCodeObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const qrDiv = entry.target;
-                    const qrImageSrc = qrDiv.dataset.src;
-                    if (qrImageSrc) {
-                        qrDiv.style.backgroundImage = `url('${qrImageSrc}')`;
-                    }
-                    observer.unobserve(qrDiv);  
-                }
-            });
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const qrDiv = entry.target;
+              const qrImageSrc = qrDiv.dataset.src;
+              if (qrImageSrc) {
+                const img = new Image();
+                img.onload = () => {
+                  qrDiv.style.backgroundImage = `url('${qrImageSrc}')`;
+                };
+                img.onerror = () => {
+                  console.warn('Failed to load QR code image:', qrImageSrc);
+                  qrDiv.style.backgroundImage = 'url(data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100%" height="100%" fill="%23ccc"/><text x="50%" y="50%" text-anchor="middle" dy="0.3em" fill="%23666">QR Code</text></svg>)';
+                };
+                img.src = qrImageSrc;
+              }
+              observer.unobserve(qrDiv);  
+            }
+          });
         }, { rootMargin: '50px' });  
 
         document.querySelectorAll('.qr-code[data-src]').forEach(qrDiv => {
-            qrCodeObserver.observe(qrDiv);
+          qrCodeObserver.observe(qrDiv);
         });
-      } else { // Fallback for older browsers
+      } else {
+        // Fallback for older browsers with error handling
         document.querySelectorAll('.qr-code[data-src]').forEach(qrDiv => {
-            const qrImageSrc = qrDiv.dataset.src;
-            if (qrImageSrc) {
-                qrDiv.style.backgroundImage = `url('${qrImageSrc}')`;
-            }
+          const qrImageSrc = qrDiv.dataset.src;
+          if (qrImageSrc) {
+            const img = new Image();
+            img.onload = () => {
+              qrDiv.style.backgroundImage = `url('${qrImageSrc}')`;
+            };
+            img.onerror = () => {
+              console.warn('Failed to load QR code image:', qrImageSrc);
+            };
+            img.src = qrImageSrc;
+          }
         });
-          document.querySelectorAll('.card').forEach(card => {
-            card.classList.add('animate__animated', 'animate__zoomIn');
+        
+        document.querySelectorAll('.card').forEach(card => {
+          card.classList.add('animate__animated', 'animate__zoomIn');
         });
+        
         if (coreBenefitsSection) { 
-            coreBenefitsSection.classList.add('is-visible');
+          coreBenefitsSection.classList.add('is-visible');
         }
       }
-        resizeCanvas();  // Initial call to resizeCanvas which includes animation logic
-        initShooters(); // Initialize shooters regardless of initial animation state
-        // Animation starting logic is now within resizeCanvas
+
+      resizeCanvas();
+      initShooters();
     }, { passive: true });
     
     function toggleCard(header) { 
-        const card = header.parentElement; 
-        card.classList.toggle('expanded'); 
-        const isExpanded = card.classList.contains('expanded');
-        header.setAttribute('aria-expanded', isExpanded.toString());
+      const card = header.parentElement; 
+      card.classList.toggle('expanded'); 
+      const isExpanded = card.classList.contains('expanded');
+      header.setAttribute('aria-expanded', isExpanded.toString());
     }
-    function debounce(func, wait) { let timeout; return function() { const context = this, args = arguments; clearTimeout(timeout); timeout = setTimeout(() => func.apply(context, args), wait); }; }
 
-    const btnP = document.getElementById('btn-personal'), btnB = document.getElementById('btn-business'),
-          secP = document.getElementById('personal'), secB = document.getElementById('business'),
-          tableP = document.getElementById('personal-table'), tableB = document.getElementById('business-table'),
-          toggleP = document.getElementById('toggle-personal-table'), toggleB = document.getElementById('toggle-business-table'),
-          backBtn = document.getElementById('back-to-top'),
-          canvas = document.getElementById('starry-canvas'), ctx = canvas.getContext('2d');
-
-    document.querySelectorAll('.nav-home, .nav-exit').forEach(button => { button.addEventListener('click', () => { window.open('https://www.monroe-humane.com', '_blank'); }); });
+    // Improved navigation handlers with error checking
+    document.querySelectorAll('.nav-home, .nav-exit').forEach(button => { 
+      button.addEventListener('click', () => { 
+        try {
+          window.open('https://www.monroe-humane.org', '_blank', 'noopener,noreferrer'); 
+        } catch (error) {
+          console.error('Failed to open external link:', error);
+          window.location.href = 'https://www.monroe-humane.org';
+        }
+      }); 
+    });
     
     function reanimate(id, useFullDelay) { 
       if (!window.requestAnimationFrame) return;
-      document.querySelectorAll(`#${id} .card`).forEach(c => {
+      const cards = document.querySelectorAll(`#${id} .card`);
+      if (!cards.length) return;
+      
+      cards.forEach(c => {
         c.classList.remove('animate__animated', 'animate__zoomIn');
         void c.offsetWidth;  
-          setTimeout(() => {  
-            c.classList.add('animate__animated', 'animate__zoomIn');
-          }, parseFloat(c.dataset.delay || 0) * (useFullDelay ? 1000 : 50) ); 
+        const delay = parseFloat(c.dataset.delay || 0) * (useFullDelay ? 1000 : 50);
+        setTimeout(() => {  
+          c.classList.add('animate__animated', 'animate__zoomIn');
+        }, delay); 
       });
     }
 
     function updateTables() {
+      if (!elements.btnP || !elements.btnB) return;
+      
       const mobile = window.innerWidth < 600;
-      if (btnP.classList.contains('active')) {
-        secP.classList.add('active'); secB.classList.remove('active');
-        tableP.classList.add('active'); tableB.classList.remove('active');
-        toggleP.style.display = mobile ? 'block' : 'none'; toggleB.style.display = 'none';
-        if (!mobile) { tableP.classList.add('visible'); tableB.classList.remove('visible'); }
+      const isPersonalActive = elements.btnP.classList.contains('active');
+      
+      if (isPersonalActive) {
+        elements.secP?.classList.add('active');
+        elements.secB?.classList.remove('active');
+        elements.tableP?.classList.add('active');
+        elements.tableB?.classList.remove('active');
+        
+        if (elements.toggleP) {
+          elements.toggleP.style.display = mobile ? 'block' : 'none';
+        }
+        if (elements.toggleB) {
+          elements.toggleB.style.display = 'none';
+        }
+        
+        if (!mobile) { 
+          elements.tableP?.classList.add('visible'); 
+          elements.tableB?.classList.remove('visible'); 
+        }
       } else {
-        secB.classList.add('active'); secP.classList.remove('active');
-        tableB.classList.add('active'); tableP.classList.remove('active');
-        toggleB.style.display = mobile ? 'block' : 'none'; toggleP.style.display = 'none';
-        if (!mobile) { tableB.classList.add('visible'); tableP.classList.remove('visible'); }
+        elements.secB?.classList.add('active');
+        elements.secP?.classList.remove('active');
+        elements.tableB?.classList.add('active');
+        elements.tableP?.classList.remove('active');
+        
+        if (elements.toggleB) {
+          elements.toggleB.style.display = mobile ? 'block' : 'none';
+        }
+        if (elements.toggleP) {
+          elements.toggleP.style.display = 'none';
+        }
+        
+        if (!mobile) { 
+          elements.tableB?.classList.add('visible'); 
+          elements.tableP?.classList.remove('visible'); 
+        }
       }
     }
 
-    btnP.onclick = () => { btnP.classList.add('active'); btnB.classList.remove('active'); mobileBtnP.classList.add('active'); mobileBtnB.classList.remove('active'); updateTables(); if(window.innerWidth>=600) reanimate('personal',false); };
-    btnB.onclick = () => { btnB.classList.add('active'); btnP.classList.remove('active'); mobileBtnB.classList.add('active'); mobileBtnP.classList.remove('active'); updateTables(); if(window.innerWidth>=600) reanimate('business',false); };
-    toggleP.onclick = () => { const vis = tableP.classList.toggle('visible'); toggleP.textContent = vis?'Hide Comparison':'Show Comparison'; toggleP.setAttribute('aria-expanded', vis ? 'true' : 'false'); };
-    toggleB.onclick = () => { const vis = tableB.classList.toggle('visible'); toggleB.textContent = vis?'Hide Comparison':'Show Comparison'; toggleB.setAttribute('aria-expanded', vis ? 'true' : 'false'); };
+    // Improved button handlers with null checks
+    if (elements.btnP) {
+      elements.btnP.onclick = () => { 
+        elements.btnP.classList.add('active'); 
+        elements.btnB?.classList.remove('active'); 
+        elements.mobileBtnP?.classList.add('active'); 
+        elements.mobileBtnB?.classList.remove('active'); 
+        updateTables(); 
+        if(window.innerWidth >= 600) reanimate('personal', false); 
+      };
+    }
+    
+    if (elements.btnB) {
+      elements.btnB.onclick = () => { 
+        elements.btnB.classList.add('active'); 
+        elements.btnP?.classList.remove('active'); 
+        elements.mobileBtnB?.classList.add('active'); 
+        elements.mobileBtnP?.classList.remove('active'); 
+        updateTables(); 
+        if(window.innerWidth >= 600) reanimate('business', false); 
+      };
+    }
 
-    const petModal = document.getElementById('pet-modal');
-    const termsModal = document.getElementById('terms-modal');
-    const memModal = document.getElementById('membership-modal');
-    const buEmbedHost = document.getElementById('bu-embed-host'); 
-    const spinner = memModal ? memModal.querySelector('.modal-spinner') : null;
+    if (elements.toggleP) {
+      elements.toggleP.onclick = () => { 
+        const vis = elements.tableP.classList.toggle('visible'); 
+        elements.toggleP.textContent = vis ? 'Hide Comparison' : 'Show Comparison'; 
+        elements.toggleP.setAttribute('aria-expanded', vis ? 'true' : 'false'); 
+      };
+    }
+    
+    if (elements.toggleB) {
+      elements.toggleB.onclick = () => { 
+        const vis = elements.tableB.classList.toggle('visible'); 
+        elements.toggleB.textContent = vis ? 'Hide Comparison' : 'Show Comparison'; 
+        elements.toggleB.setAttribute('aria-expanded', vis ? 'true' : 'false'); 
+      };
+    }
 
-
+    // Improved modal management with better error handling
     function openModal(modal) { 
-        if (!modal || !modal.id) { return; } 
-        previouslyFocusedElement = document.activeElement; // Store current focus
-        requestAnimationFrame(() => { 
-            modal.style.display = modal.id === 'pet-modal' ? 'flex' : 'block'; 
-            requestBodyOverflowHidden(modal.id); 
-            const closeButton = modal.querySelector('.close-modal-btn');
-            if (closeButton) {
-                closeButton.focus(); // Set focus to the close button
-            }
-        }); 
-    }
-    function closeModal(modalToClose) { 
-        if (!modalToClose || !modalToClose.id) { return; } 
-        requestAnimationFrame(() => { 
-            modalToClose.style.display = 'none'; 
-            releaseBodyOverflowHidden(modalToClose.id); 
-            if (previouslyFocusedElement) {
-                previouslyFocusedElement.focus(); // Return focus
-                previouslyFocusedElement = null;
-            }
-        }); 
-    }
-
-    document.querySelectorAll('.nav-pets').forEach(b=>b.onclick=()=>openPetModal());
-    document.querySelectorAll('.nav-terms').forEach(b=>b.onclick=()=>openModal(termsModal));
-    document.querySelectorAll('.feature-container > .close-modal-btn').forEach(btn=>{ btn.onclick = () => { let modalToClose = btn.closest('.feature-container'); if (modalToClose) { if (modalToClose.id === 'pet-modal') closePetModal(); else closeModal(modalToClose); } }; });
-    
-    // MODIFIED openMembershipModal function - no longer takes planSpecificUrl
-    function openMembershipModal() { 
-        if (!memModal || !spinner || !buEmbedHost) {
-            console.error("Membership modal components (modal, spinner, or embed host) not found.");
-            return;
+      if (!modal || !modal.id) { 
+        console.error('Invalid modal provided to openModal');
+        return; 
+      } 
+      
+      previouslyFocusedElement = document.activeElement;
+      requestAnimationFrame(() => { 
+        modal.style.display = modal.id === 'pet-modal' ? 'flex' : 'block'; 
+        requestBodyOverflowHidden(modal.id); 
+        const closeButton = modal.querySelector('.close-modal-btn');
+        if (closeButton) {
+          closeButton.focus();
         }
-
-        spinner.style.display = 'block';
-        buEmbedHost.innerHTML = ''; 
-
-        const checkoutDiv = document.createElement('div');
-        checkoutDiv.id = 'bu-checkout'; 
-        buEmbedHost.appendChild(checkoutDiv);
-
-        const fixedBetterUniteCheckoutPageUrl = 'https://bnte.us/sc/kokSYhX8';
-
-        const script = document.createElement('script');
-        script.src = `https://app.betterunite.com/embedjs?u=${encodeURIComponent(fixedBetterUniteCheckoutPageUrl)}`;
-        script.async = true; 
-
-        script.onload = () => {
-            if(spinner) spinner.style.display = 'none';
-        };
-
-        script.onerror = () => {
-            console.error('Failed to load BetterUnite embed script from: ' + script.src);
-            if(spinner) spinner.style.display = 'none';
-            buEmbedHost.innerHTML = '<p style="color: white; text-align: center; padding: 20px;">Error loading membership checkout. Please try again later or contact support.</p>';
-        };
-
-        buEmbedHost.appendChild(script); 
-        openModal(memModal); 
+      }); 
     }
     
-    // Updated QR link event listeners to call openMembershipModal() without arguments
-    document.querySelectorAll('.qr-link').forEach(qr=>{ 
-        qr.onclick=e=>{ e.preventDefault(); openMembershipModal() }; 
-        qr.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openMembershipModal(); } }; 
+    function closeModal(modalToClose) { 
+      if (!modalToClose || !modalToClose.id) { 
+        console.error('Invalid modal provided to closeModal');
+        return; 
+      } 
+      
+      requestAnimationFrame(() => { 
+        modalToClose.style.display = 'none'; 
+        releaseBodyOverflowHidden(modalToClose.id); 
+        if (previouslyFocusedElement) {
+          try {
+            previouslyFocusedElement.focus();
+          } catch (error) {
+            console.warn('Failed to restore focus:', error);
+          }
+          previouslyFocusedElement = null;
+        }
+      }); 
+    }
+
+    // Initialize navigation handlers
+    document.querySelectorAll('.nav-pets').forEach(b => b.onclick = () => openPetModal());
+    document.querySelectorAll('.nav-terms').forEach(b => b.onclick = () => openModal(elements.termsModal));
+    
+    document.querySelectorAll('.feature-container > .close-modal-btn').forEach(btn => { 
+      btn.onclick = () => { 
+        let modalToClose = btn.closest('.feature-container'); 
+        if (modalToClose) { 
+          if (modalToClose.id === 'pet-modal') {
+            closePetModal(); 
+          } else {
+            closeModal(modalToClose); 
+          }
+        } 
+      }; 
+    });
+    
+    // Improved membership modal with better error handling
+    function openMembershipModal() { 
+      if (!elements.memModal || !elements.spinner || !elements.buEmbedHost) {
+        console.error("Membership modal components not found.");
+        return;
+      }
+
+      elements.spinner.style.display = 'block';
+      elements.buEmbedHost.innerHTML = ''; 
+
+      const checkoutDiv = document.createElement('div');
+      checkoutDiv.id = 'bu-checkout'; 
+      elements.buEmbedHost.appendChild(checkoutDiv);
+
+      const fixedBetterUniteCheckoutPageUrl = 'https://bnte.us/sc/kokSYhX8';
+
+      const script = document.createElement('script');
+      script.src = `https://app.betterunite.com/embedjs?u=${encodeURIComponent(fixedBetterUniteCheckoutPageUrl)}`;
+      script.async = true; 
+
+      script.onload = () => {
+        if(elements.spinner) elements.spinner.style.display = 'none';
+      };
+
+      script.onerror = () => {
+        console.error('Failed to load BetterUnite embed script');
+        if(elements.spinner) elements.spinner.style.display = 'none';
+        elements.buEmbedHost.innerHTML = '<p style="color: white; text-align: center; padding: 20px;">Error loading membership checkout. Please try again later or contact support.</p>';
+      };
+
+      elements.buEmbedHost.appendChild(script); 
+      openModal(elements.memModal); 
+    }
+    
+    // Updated QR link handlers
+    document.querySelectorAll('.qr-link').forEach(qr => { 
+      qr.onclick = e => { e.preventDefault(); openMembershipModal(); }; 
+      qr.onkeydown = e => { 
+        if (e.key === 'Enter' || e.key === ' ') { 
+          e.preventDefault(); 
+          openMembershipModal(); 
+        } 
+      }; 
     });
 
-    let lastKnownScrollPosition = 0; let ticking = false;
-    window.addEventListener('scroll', () => { lastKnownScrollPosition = window.pageYOffset; if (!ticking) { window.requestAnimationFrame(() => { backBtn.classList.toggle('show', lastKnownScrollPosition > 300); ticking = false; }); ticking = true; } }, { passive: true });
-    backBtn.onclick = () => window.scrollTo({top:0, behavior:'smooth'});
+    // Optimized scroll handler
+    let lastKnownScrollPosition = 0; 
+    let ticking = false;
+    
+    const handleScroll = () => {
+      lastKnownScrollPosition = window.pageYOffset; 
+      if (!ticking) { 
+        window.requestAnimationFrame(() => { 
+          if (elements.backBtn) {
+            elements.backBtn.classList.toggle('show', lastKnownScrollPosition > 300); 
+          }
+          ticking = false; 
+        }); 
+        ticking = true; 
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    if (elements.backBtn) {
+      elements.backBtn.onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
+    }
 
+    // Canvas animation variables
     let stars = [], shooters = [], lastTime = 0, animationActive = false;
     
     function resizeCanvas() { 
-        if (!canvas) return; 
-        canvas.width = window.innerWidth; 
-        canvas.height = window.innerHeight; 
-        initStars(); 
-        
-        const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const shouldBeActive = window.innerWidth <= 600 && !document.body.classList.contains(NO_SCROLL_CLASS) && !prefersReducedMotion; 
-        
-        if (shouldBeActive && !animationActive) { 
-            animationActive = true; 
-            lastTime = 0; 
-            requestAnimationFrame(animate); 
-        } else if (!shouldBeActive && animationActive) { 
-            animationActive = false; 
-        }
+      if (!elements.canvas || !elements.ctx) return; 
+      
+      elements.canvas.width = window.innerWidth; 
+      elements.canvas.height = window.innerHeight; 
+      initStars(); 
+      
+      const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const shouldBeActive = window.innerWidth <= 600 && !document.body.classList.contains(NO_SCROLL_CLASS) && !prefersReducedMotion; 
+      
+      if (shouldBeActive && !animationActive) { 
+        animationActive = true; 
+        lastTime = 0; 
+        requestAnimationFrame(animate); 
+      } else if (!shouldBeActive && animationActive) { 
+        animationActive = false; 
+      }
     }
 
-    function initStars() { if (!canvas) return; stars = []; const starCount = Math.min(200, Math.floor(window.innerWidth / 6)); for(let i = 0; i < starCount; i++) { stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, size: Math.random() * 1.5 + 0.5, opacity: Math.random() * 0.4 + 0.3 }); } }
-    function initShooters() { if (!canvas) return; shooters = []; const shooterCount = window.innerWidth < 600 ? 2 : 3; for(let i = 0; i < shooterCount; i++) { shooters.push({ x: -50, y: -50, length: Math.random() * 40 + 20, speed: Math.random() * 4 + 2, opacity: 0, trail: [], active: false }); } }
+    function initStars() { 
+      if (!elements.canvas) return; 
+      stars = []; 
+      const starCount = Math.min(200, Math.floor(window.innerWidth / 6)); 
+      for(let i = 0; i < starCount; i++) { 
+        stars.push({ 
+          x: Math.random() * elements.canvas.width, 
+          y: Math.random() * elements.canvas.height, 
+          size: Math.random() * 1.5 + 0.5, 
+          opacity: Math.random() * 0.4 + 0.3 
+        }); 
+      } 
+    }
+    
+    function initShooters() { 
+      if (!elements.canvas) return; 
+      shooters = []; 
+      const shooterCount = window.innerWidth < 600 ? 2 : 3; 
+      for(let i = 0; i < shooterCount; i++) { 
+        shooters.push({ 
+          x: -50, 
+          y: -50, 
+          length: Math.random() * 40 + 20, 
+          speed: Math.random() * 4 + 2, 
+          opacity: 0, 
+          trail: [], 
+          active: false 
+        }); 
+      } 
+    }
     
     function animate(t) { 
-        if (!animationActive || !ctx) return; 
-        if(!lastTime) lastTime = t; 
-        const dt = (t - lastTime) / 1000; 
-        lastTime = t; 
-        ctx.clearRect(0, 0, canvas.width, canvas.height); 
-        stars.forEach(s => { ctx.globalAlpha = s.opacity; ctx.fillStyle = 'white'; ctx.beginPath(); ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2); ctx.fill(); }); 
-        let activeShooterCount = shooters.filter(s => s.active).length; 
-        shooters.forEach(s => { if(s.active) { s.x -= s.speed * (dt * 60); s.opacity -= dt * 1.5; s.trail.push({x: s.x, y: s.y}); if(s.trail.length > s.length) s.trail.shift(); if(s.opacity <= 0) { s.active = false; s.trail = []; activeShooterCount--; } ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.globalAlpha = s.opacity; s.trail.forEach(p => ctx.lineTo(p.x, p.y)); ctx.strokeStyle = 'rgba(255,255,255,0.7)'; ctx.lineWidth = 1.5; ctx.stroke(); } else if(Math.random() < (0.002 * (dt * 60)) && activeShooterCount < (window.innerWidth < 600 ? 1 : 2) ) { Object.assign(s, { x: canvas.width + Math.random() * 100, y: Math.random() * canvas.height * 0.7, opacity: 1, active: true, trail: [] }); activeShooterCount++; } }); 
-        if (animationActive) { requestAnimationFrame(animate); } 
+      if (!animationActive || !elements.ctx) return; 
+      
+      if(!lastTime) lastTime = t; 
+      const dt = (t - lastTime) / 1000; 
+      lastTime = t; 
+      
+      elements.ctx.clearRect(0, 0, elements.canvas.width, elements.canvas.height); 
+      
+      // Draw stars
+      stars.forEach(s => { 
+        elements.ctx.globalAlpha = s.opacity; 
+        elements.ctx.fillStyle = 'white'; 
+        elements.ctx.beginPath(); 
+        elements.ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2); 
+        elements.ctx.fill(); 
+      }); 
+      
+      // Handle shooters
+      let activeShooterCount = shooters.filter(s => s.active).length; 
+      shooters.forEach(s => { 
+        if(s.active) { 
+          s.x -= s.speed * (dt * 60); 
+          s.opacity -= dt * 1.5; 
+          s.trail.push({x: s.x, y: s.y}); 
+          if(s.trail.length > s.length) s.trail.shift(); 
+          if(s.opacity <= 0) { 
+            s.active = false; 
+            s.trail = []; 
+            activeShooterCount--; 
+          } 
+          elements.ctx.beginPath(); 
+          elements.ctx.moveTo(s.x, s.y); 
+          elements.ctx.globalAlpha = s.opacity; 
+          s.trail.forEach(p => elements.ctx.lineTo(p.x, p.y)); 
+          elements.ctx.strokeStyle = 'rgba(255,255,255,0.7)'; 
+          elements.ctx.lineWidth = 1.5; 
+          elements.ctx.stroke(); 
+        } else if(Math.random() < (0.002 * (dt * 60)) && activeShooterCount < (window.innerWidth < 600 ? 1 : 2)) { 
+          Object.assign(s, { 
+            x: elements.canvas.width + Math.random() * 100, 
+            y: Math.random() * elements.canvas.height * 0.7, 
+            opacity: 1, 
+            active: true, 
+            trail: [] 
+          }); 
+          activeShooterCount++; 
+        } 
+      }); 
+      
+      if (animationActive) { 
+        requestAnimationFrame(animate); 
+      } 
     }
+    
     window.addEventListener('resize', debounce(resizeCanvas, 250), { passive: true });
 
-    const hamburgerBtn = document.getElementById('hamburger-btn'); const hamburgerMenu = document.getElementById('hamburger-menu');
-    const closeMenuBtn = hamburgerMenu.querySelector('.close-menu-btn'); const mobileBtnP = document.getElementById('mobile-btn-personal');
-    const mobileBtnB = document.getElementById('mobile-btn-business');
-    
-    hamburgerBtn.addEventListener('click', () => { 
+    // Improved hamburger menu with better accessibility
+    if (elements.hamburgerBtn && elements.hamburgerMenu && elements.closeMenuBtn) {
+      elements.hamburgerBtn.addEventListener('click', () => { 
         previouslyFocusedElement = document.activeElement;
         requestAnimationFrame(() => { 
-            hamburgerMenu.classList.add('open'); 
-            requestBodyOverflowHidden('hamburger-menu'); 
-            hamburgerBtn.setAttribute('aria-expanded', 'true'); 
-            closeMenuBtn.focus();
+          elements.hamburgerMenu.classList.add('open'); 
+          requestBodyOverflowHidden('hamburger-menu'); 
+          elements.hamburgerBtn.setAttribute('aria-expanded', 'true'); 
+          elements.closeMenuBtn.focus();
         }); 
-    });
-    function closeHamburgerMenu() { 
-        hamburgerMenu.classList.remove('open'); 
+      });
+      
+      function closeHamburgerMenu() { 
+        elements.hamburgerMenu.classList.remove('open'); 
         releaseBodyOverflowHidden('hamburger-menu'); 
-        hamburgerBtn.setAttribute('aria-expanded', 'false'); 
+        elements.hamburgerBtn.setAttribute('aria-expanded', 'false'); 
         if (previouslyFocusedElement) {
+          try {
             previouslyFocusedElement.focus();
-            previouslyFocusedElement = null;
+          } catch (error) {
+            console.warn('Failed to restore focus after closing menu:', error);
+          }
+          previouslyFocusedElement = null;
         }
+      }
+      
+      elements.closeMenuBtn.addEventListener('click', closeHamburgerMenu);
+      
+      // Improved click outside handler
+      document.addEventListener('click', (event) => { 
+        if (elements.hamburgerMenu.classList.contains('open') && 
+            !elements.hamburgerMenu.contains(event.target) && 
+            !elements.hamburgerBtn.contains(event.target)) { 
+          closeHamburgerMenu(); 
+        } 
+      });
+      
+      // Improved keyboard handlers
+      document.addEventListener('keydown', (event) => { 
+        if (event.key === 'Escape') { 
+          if (elements.hamburgerMenu.classList.contains('open')) { 
+            closeHamburgerMenu(); 
+          } else { 
+            const openModals = [elements.memModal, elements.petModal, elements.termsModal].filter(m => m && m.style.display !== 'none'); 
+            if (openModals.length > 0) { 
+              const modalToClose = openModals[0]; 
+              if (modalToClose.id === 'pet-modal') { 
+                closePetModal(); 
+              } else { 
+                closeModal(modalToClose); 
+              } 
+            } 
+          } 
+        } 
+      });
+      
+      if (elements.mobileBtnP) {
+        elements.mobileBtnP.addEventListener('click', () => { 
+          elements.mobileBtnP.classList.add('active'); 
+          elements.mobileBtnB?.classList.remove('active'); 
+          elements.btnP?.click(); 
+        });
+      }
+      
+      if (elements.mobileBtnB) {
+        elements.mobileBtnB.addEventListener('click', () => { 
+          elements.mobileBtnB.classList.add('active'); 
+          elements.mobileBtnP?.classList.remove('active'); 
+          elements.btnB?.click(); 
+        });
+      }
+      
+      // Improved mobile navigation handler
+      const mobileNav = document.querySelector('.mobile-nav');
+      if (mobileNav) {
+        mobileNav.addEventListener('click', (event) => { 
+          const button = event.target.closest('button'); 
+          if (button && !button.parentElement.classList.contains('mobile-toggle-bar')) { 
+            if (['nav-home', 'nav-pets', 'nav-terms', 'nav-exit'].some(cls => button.classList.contains(cls))) { 
+              closeHamburgerMenu(); 
+            } 
+          } 
+        });
+      }
     }
-    closeMenuBtn.addEventListener('click', closeHamburgerMenu);
-    document.addEventListener('click', (event) => { if (hamburgerMenu.classList.contains('open') && !hamburgerMenu.contains(event.target) && !hamburgerBtn.contains(event.target)) { closeHamburgerMenu(); } });
-    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { if (hamburgerMenu.classList.contains('open')) { closeHamburgerMenu(); } else { const openModals = [memModal, petModal, termsModal].filter(m => m && m.style.display !== 'none'); if (openModals.length > 0) { const modalToClose = openModals[0]; if (modalToClose.id === 'pet-modal') { closePetModal(); } else { closeModal(modalToClose); } } } } });
-    mobileBtnP.addEventListener('click', () => { mobileBtnP.classList.add('active'); mobileBtnB.classList.remove('active'); btnP.click(); });
-    mobileBtnB.addEventListener('click', () => { mobileBtnB.classList.add('active'); mobileBtnP.classList.remove('active'); btnB.click(); });
-    document.querySelector('.mobile-nav').addEventListener('click', (event) => { const button = event.target.closest('button'); if (button && !button.parentElement.classList.contains('mobile-toggle-bar')) { if (['nav-home', 'nav-pets', 'nav-terms', 'nav-exit'].some(cls => button.classList.contains(cls))) { closeHamburgerMenu(); } } });
 
+    // Pet Modal functionality with improved error handling
     const petIframe = document.getElementById('pet-iframe'); const petLoading = document.getElementById('pet-loading');
     let petIframeLoadedOnce = false;  
-    function openPetModal() { openModal(petModal); petLoading.style.opacity = '1'; petLoading.style.display = 'flex'; if (!petIframeLoadedOnce) { if (petIframe.getAttribute('data-src')) { petIframe.src = petIframe.getAttribute('data-src'); petIframeLoadedOnce = true; } else { petLoading.style.opacity = '0'; petLoading.style.display = 'none'; } } }
-    function closePetModal() { closeModal(petModal); }
+    function openPetModal() { openModal(elements.petModal); petLoading.style.opacity = '1'; petLoading.style.display = 'flex'; if (!petIframeLoadedOnce) { if (petIframe.getAttribute('data-src')) { petIframe.src = petIframe.getAttribute('data-src'); petIframeLoadedOnce = true; } else { petLoading.style.opacity = '0'; petLoading.style.display = 'none'; } } }
+    function closePetModal() { closeModal(elements.petModal); }
     petIframe.addEventListener('load', () => { if (petIframe.src && petIframe.src !== 'about:blank' && !petIframe.src.startsWith('blob:') && petIframe.src !== window.location.href + '#') { setTimeout(() => { petLoading.style.opacity = '0'; setTimeout(() => { if (petLoading.style.opacity === '0') { petLoading.style.display = 'none'; } }, 500); }, 300); } });
     function refreshPets() { petLoading.style.display = 'flex'; petLoading.style.opacity = '1'; const baseUrl = petIframe.getAttribute('data-src'); if (!baseUrl) { petLoading.style.opacity = '0'; petLoading.style.display = 'none'; return; } const timestamp = Date.now(); const refreshUrl = baseUrl.includes('?') ? `${baseUrl}&refresh=${timestamp}` : `${baseUrl}?refresh=${timestamp}`; petIframe.src = refreshUrl; }
+
+    // Constants for the CSV
+    const COL_ID       = "ID";
+    const COL_NAME     = "Name";
+    const COL_SPECIES  = "Species";
+    const COL_BREED    = "Breed";
+    const COL_SEX      = "Sex/SN";
+    const COL_AGE      = "Age";
+    const COL_LOCATION = "Location";
+    const COL_PHOTO    = "Photo URL";
+    const COL_DESC     = "Description";
+    const COL_ARCHIVED = "Archived";
+
+    // Sheet info
+    const SHEET_ID  = '1jO9GowDUU6GzSHA39zbR7beK3GgW9bAsY71LIftdCyM';
+    const SHEET_GID = '0';
+    const CSV_URL   = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${SHEET_GID}`;
+
+    let allPets = [];
+    let displayedPets = [];
+    let speciesFilterEl, genderFilterEl, searchEl, searchButtonEl, petGridEl;
+    let modalOverlayEl, modalContentEl, modalIframeEl, modalErrorEl, modalCloseBtn, modalTitleEl;
+    let petDataLoaded = false;
+
+    // Modified openPetModal function to load pet data if needed
+    function openPetModal() {
+      openModal(elements.petModal);
+      
+      // Don't repeatedly fetch pet data if already loaded
+      if (!petDataLoaded) {
+        // Initialize references to elements (lazy init when modal opens)
+        speciesFilterEl = document.getElementById('speciesFilter');
+        genderFilterEl  = document.getElementById('genderFilter');
+        searchEl        = document.getElementById('search');
+        searchButtonEl  = document.getElementById('searchButton');
+        petGridEl       = document.getElementById('petGrid');
+        modalOverlayEl  = document.getElementById('modalOverlay');
+        modalContentEl  = modalOverlayEl.querySelector('.modal-content');
+        modalIframeEl   = document.getElementById('modalIframe');
+        modalErrorEl    = document.getElementById('modalError');
+        modalCloseBtn   = document.getElementById('modalClose');
+        modalTitleEl    = document.getElementById('modalTitle');
+
+        // Setup event listeners
+        setupPetEventListeners();
+        
+        // Load the pet data
+        loadPets();
+        petDataLoaded = true;
+      }
+    }
+
+    // Helper: Extract gender part from the "Sex/SN" field
+    function getGender(sexField) {
+      if (!sexField) return "";
+      return String(sexField).split('/')[0].trim();
+    }
+
+    // Populate "Species" dropdown based on non-archived pets
+    function populateSpeciesFilter(pets) {
+      const speciesSet = new Set();
+      pets.forEach(pet => {
+        const species = String(pet[COL_SPECIES] || "").trim();
+        if (species) speciesSet.add(species);
+      });
+      const speciesArr = Array.from(speciesSet).sort((a, b) => a.localeCompare(b));
+      speciesFilterEl.innerHTML = '<option value="">All Species</option>' +
+        speciesArr.map(s => `<option value="${s}">${s}</option>`).join('');
+    }
+
+    // Render visible pet cards, excluding archived ones defensively
+    function renderPets() {
+      const speciesVal = speciesFilterEl.value;
+      const genderVal  = genderFilterEl.value;
+      const query      = searchEl.value.trim().toLowerCase();
+      
+      displayedPets = allPets.filter(pet => {
+        // Defensive check: skip if archived
+        if (String(pet[COL_ARCHIVED] || "").trim().toLowerCase() === "yes") {
+          return false;
+        }
+        // Species filter
+        if (speciesVal && String(pet[COL_SPECIES] || "").trim() !== speciesVal) {
+          return false;
+        }
+        // Gender filter
+        if (genderVal && getGender(pet[COL_SEX]) !== genderVal) {
+          return false;
+        }
+        // Search query against name, breed, species, or description
+        if (query) {
+          const matchesName    = String(pet[COL_NAME] || "").toLowerCase().includes(query);
+          const matchesBreed   = String(pet[COL_BREED] || "").toLowerCase().includes(query);
+          const matchesSpecies = String(pet[COL_SPECIES] || "").toLowerCase().includes(query);
+          const matchesDesc    = String(pet[COL_DESC] || "").toLowerCase().includes(query);
+          return (matchesName || matchesBreed || matchesSpecies || matchesDesc);
+        }
+        // If no query and all filters passed, keep the pet
+        return true;
+      });
+      
+      // If no pets match, show a "No pets match your criteria" message
+      if (!displayedPets.length) {
+        petGridEl.innerHTML = `
+          <div class="loading-container" style="min-height:220px;">
+            <div style="font-size:1.13em;color:#64748b;">No pets match your criteria.</div>
+            <div style="color:#94a3b8; font-size:0.98em;">Try adjusting filters or search terms.</div>
+          </div>
+        `;
+        return;
+      }
+      
+      // Otherwise, build the grid of pet cards
+      petGridEl.innerHTML = displayedPets.map((p, i) => {
+        const petName     = String(p[COL_NAME] || '(No Name)').trim();
+        const petSpecies  = String(p[COL_SPECIES] || 'N/A').trim();
+        const petBreed    = String(p[COL_BREED] || 'N/A').trim();
+        const petSex      = getGender(p[COL_SEX]) || 'N/A';
+        const petAge      = String(p[COL_AGE] || 'N/A').trim();
+        const petLocation = String(p[COL_LOCATION] || 'N/A').trim();
+        const photoUrl    = (p[COL_PHOTO] && isImageURL(p[COL_PHOTO]))
+                        ? p[COL_PHOTO]
+                        : `https://placehold.co/600x400/e2e8f0/94a3b8?text=No+Photo&font=Inter`;
+        return `
+          <div class="pet-card" data-pet-index="${i}" tabindex="0" aria-label="View profile for ${petName}">
+            <img class="pet-photo" loading="lazy" src="${photoUrl}" alt="${petName}">
+            <div class="pet-details">
+              <div class="pet-name" title="${petName}">${petName}</div>
+              <div class="pet-row"><b>Species:</b> ${petSpecies}</div>
+              <div class="pet-row"><b>Breed:</b> ${petBreed}</div>
+              <div class="pet-row"><b>Sex:</b> ${petSex}</div>
+              <div class="pet-row"><b>Age:</b> ${petAge}</div>
+              <div class="pet-row"><b>Location:</b> ${petLocation}</div>
+              <div class="view-profile"><span>View Profile</span></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+      
+      // Attach click/keyboard listeners to each pet card for opening the modal
+      document.querySelectorAll('.pet-card').forEach(card => {
+        card.addEventListener('click', () => openPetDetail(parseInt(card.dataset.petIndex)));
+        card.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openPetDetail(parseInt(card.dataset.petIndex));
+          }
+        });
+      });
+    }
+
+    // Validate if a string is a valid image URL
+    function isImageURL(url) {
+      if (typeof url !== 'string') return false;
+      url = url.trim();
+      return (
+        /^https?:\/\/.+\.(jpg|jpeg|png|gif|webp|bmp|svg)(\?.*)?$/i.test(url) ||
+        /drive\.google\.com\/(?:uc\?export=view&id=|file\/d\/)([a-zA-Z0-9_-]+)/.test(url) ||
+        /photos\.app\.goo\.gl\//.test(url)
+      );
+    }
+
+    // Load Petango details
+    function loadPapaParse(callback) {
+      if (window.Papa) {
+        callback();
+        return;
+      }
+      
+      const script = document.createElement('script');
+      script.src = "https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js";
+      script.onload = callback;
+      script.onerror = () => {
+        console.error("Failed to load PapaParse library");
+        petGridEl.innerHTML = `
+          <div class="loading-container">
+            <p style="color:red;">Could not load required libraries.</p>
+          </div>
+        `;
+      };
+      document.head.appendChild(script);
+    }
+
+    // Fetch CSV, parse, filter out archived pets, then populate filters and render
+    function loadPets() {
+      petGridEl.innerHTML = `
+        <div class="loading-container">
+          <div class="spinner"></div>
+          <p style="font-size:1.15em; color:#64748b;">Loading pets…</p>
+        </div>
+      `;
+      
+      loadPapaParse(() => {
+        fetch(CSV_URL)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`Network response was not ok: ${response.statusText} (Status: ${response.status})`);
+            }
+            return response.text();
+          })
+          .then(csv => {
+            const parsed = Papa.parse(csv, { header: true, skipEmptyLines: true });
+            allPets = parsed.data.map(pet => ({
+              [COL_ID]:       pet[COL_ID] || null,
+              [COL_NAME]:     pet[COL_NAME] || '',
+              [COL_SPECIES]:  pet[COL_SPECIES] || '',
+              [COL_BREED]:    pet[COL_BREED] || '',
+              [COL_SEX]:      pet[COL_SEX] || '',
+              [COL_AGE]:      pet[COL_AGE] || '',
+              [COL_LOCATION]: pet[COL_LOCATION] || '',
+              [COL_PHOTO]:    pet[COL_PHOTO] || '',
+              [COL_DESC]:     pet[COL_DESC] || '',
+              [COL_ARCHIVED]: pet[COL_ARCHIVED] || 'No'
+            }));
+            
+            // Filter out any pets marked as archived = "Yes"
+            allPets = allPets.filter(pet => {
+              return String(pet[COL_ARCHIVED] || "").trim().toLowerCase() !== "yes";
+            });
+            
+            if (allPets.length === 0) {
+              petGridEl.innerHTML = `
+                <div class="loading-container">
+                  <p style="font-size:1.1em;">No pets found.</p>
+                </div>
+              `;
+              return;
+            }
+            
+            // Populate species dropdown from the filtered list
+            populateSpeciesFilter(allPets);
+            
+            // Render pet grid based on filtered list and current filters
+            renderPets();
+          })
+          .catch(e => {
+            petGridEl.innerHTML = `
+              <div class="loading-container">
+                <p style="color:red;">Could not load pet list. Please try again later.</p>
+              </div>
+            `;
+            console.error("Error loading pets:", e);
+          });
+      });
+    }
+
+    // Setup event listeners for the pet search functionality
+    function setupPetEventListeners() {
+      searchEl.addEventListener('input', renderPets);
+      searchButtonEl.addEventListener('click', renderPets);
+      speciesFilterEl.addEventListener('change', renderPets);
+      genderFilterEl.addEventListener('change', renderPets);
+      modalCloseBtn.addEventListener('click', closePetDetail);
+      modalOverlayEl.addEventListener('click', function(e) {
+        if (e.target === this) closePetDetail();
+      });
+      
+      // Handle Escape key for closing the detail modal
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modalOverlayEl.classList.contains('active')) {
+          closePetDetail();
+        }
+      });
+    }
+
+    // Open modal and load Petango profile (or show error if no ID)
+    function openPetDetail(idx) {
+      if (idx < 0 || idx >= displayedPets.length) {
+        modalTitleEl.textContent = 'Error';
+        modalIframeEl.style.display = "none";
+        modalErrorEl.textContent = "Could not display pet details due to an internal error (invalid index).";
+        modalErrorEl.style.display = 'flex';
+        modalOverlayEl.classList.add('active');
+        modalContentEl.focus();
+        return;
+      }
+      
+      const pet = displayedPets[idx];
+      const animalID = String(pet[COL_ID] || "").trim();
+      const petName  = String(pet[COL_NAME] || "Pet").trim();
+      
+      modalTitleEl.textContent = petName ? `${petName}'s Profile` : 'Pet Profile';
+      
+      if (animalID) {
+        modalIframeEl.src = `https://ws.petango.com/webservices/adoptablesearch/wsAdoptableAnimalDetails2.aspx?id=${animalID}&css=&authkey=40fm1dbi1t4267edhjlafrfmbgfqfvmi0vjjm3iori7pxqk8xp&PopUp=true`;
+        modalIframeEl.style.display = "block";
+        modalErrorEl.style.display = "none";
+      } else {
+        modalIframeEl.src = "about:blank";
+        modalIframeEl.style.display = "none";
+        modalErrorEl.textContent = `Detailed profile for ${petName || 'this pet'} is not available as an ID was not provided.`;
+        modalErrorEl.style.display = "flex";
+      }
+      
+      modalOverlayEl.classList.add('active');
+      modalContentEl.focus();
+    }
+
+    // Close the pet-detail modal
+    function closePetDetail() {
+      modalOverlayEl.classList.remove('active');
+      setTimeout(() => {
+        modalIframeEl.src = "about:blank";
+      }, 250);
+    }
+
+    // Replace refreshPets with new implementation
+    function refreshPets() {
+      // Reset filters
+      speciesFilterEl.value = '';
+      genderFilterEl.value = '';
+      searchEl.value = '';
+      
+      // Reload pets
+      loadPets();
+    }
   </script>
 </body>
 </html>

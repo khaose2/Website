@@ -2,43 +2,258 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>PyGame-CE + Pyodide Minimal Test</title>
-  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
-</head>
-<body style="background:#222;">
-  <canvas id="game-canvas" width="640" height="480" tabindex="0"></canvas>
-  <div id="loading">Loading Pyodide...</div>
-  <script>
-    async function main() {
-      const loading = document.getElementById('loading');
-      loading.innerText = 'Loading Pyodide...';
-      let pyodide = await loadPyodide();
-
-      // Use older pygame-ce for best compatibility with 0.26.1
-      await pyodide.loadPackage([
-        "https://cdn.jsdelivr.net/pyodide/0.26.1/full/pyodide-py-pygame-ce-2.3.2.tar.bz2"
-      ]);
-      loading.innerText = 'Starting PyGame...';
-
-      await pyodide.runPythonAsync(`
-import os
-os.environ['SDL_EMSCRIPTEN_CANVAS_SELECTOR'] = '#game-canvas'
-import pygame
-pygame.init()
-screen = pygame.display.set_mode((640,480))
-pygame.display.set_caption("Test")
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT: running = False
-    screen.fill((34,53,73))
-    pygame.draw.circle(screen, (243,156,18), (320,240), 100)
-    pygame.display.flip()
-pygame.quit()
-      `);
-      loading.style.display = 'none';
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyGame-CE + Pyodide Game Test</title>
+  <meta name="description" content="A PyGame test using Pyodide in the browser">
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js" defer></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #222;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
     }
-    main();
+    
+    #game-canvas {
+      border: 2px solid #444;
+      border-radius: 8px;
+      background: #111;
+      max-width: 100%;
+      height: auto;
+    }
+    
+    #loading {
+      margin: 20px 0;
+      padding: 15px 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 25px;
+      font-size: 1.1rem;
+      text-align: center;
+      min-width: 200px;
+    }
+    
+    .error {
+      background: rgba(220, 38, 38, 0.2);
+      border: 1px solid #dc2626;
+      color: #fca5a5;
+    }
+    
+    .success {
+      background: rgba(34, 197, 94, 0.2);
+      border: 1px solid #22c55e;
+      color: #86efac;
+    }
+    
+    .controls {
+      margin-top: 20px;
+      text-align: center;
+    }
+    
+    button {
+      background: #3b82f6;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin: 0 5px;
+      transition: background-color 0.2s;
+    }
+    
+    button:hover {
+      background: #2563eb;
+    }
+    
+    button:disabled {
+      background: #6b7280;
+      cursor: not-allowed;
+    }
+    
+    .info {
+      margin-top: 15px;
+      padding: 10px;
+      background: rgba(59, 130, 246, 0.1);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      max-width: 600px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>PyGame-CE + Pyodide Test</h1>
+  <canvas id="game-canvas" width="640" height="480" tabindex="0" role="img" aria-label="Game canvas"></canvas>
+  <div id="loading">Initializing...</div>
+  <div class="controls">
+    <button id="start-btn" onclick="startGame()" disabled>Start Game</button>
+    <button id="stop-btn" onclick="stopGame()" disabled>Stop Game</button>
+  </div>
+  <div class="info">
+    <p>This is a test of PyGame-CE running in the browser using Pyodide.</p>
+    <p>Click on the canvas and use arrow keys or WASD to interact once the game starts.</p>
+  </div>
+
+  <script>
+    let pyodide = null;
+    let gameRunning = false;
+    const loading = document.getElementById('loading');
+    const startBtn = document.getElementById('start-btn');
+    const stopBtn = document.getElementById('stop-btn');
+    const canvas = document.getElementById('game-canvas');
+
+    function updateStatus(message, type = 'normal') {
+      loading.textContent = message;
+      loading.className = type === 'error' ? 'error' : type === 'success' ? 'success' : '';
+    }
+
+    function updateControls() {
+      startBtn.disabled = !pyodide || gameRunning;
+      stopBtn.disabled = !gameRunning;
+    }
+
+    async function initializePyodide() {
+      try {
+        updateStatus('Loading Pyodide...');
+        pyodide = await loadPyodide({
+          indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.1/full/"
+        });
+
+        updateStatus('Loading PyGame-CE...');
+        await pyodide.loadPackage([
+          "https://cdn.jsdelivr.net/pyodide/0.26.1/full/pyodide-py-pygame-ce-2.3.2.tar.bz2"
+        ]);
+
+        updateStatus('Ready to start!', 'success');
+        updateControls();
+      } catch (error) {
+        console.error('Failed to initialize Pyodide:', error);
+        updateStatus(`Initialization failed: ${error.message}`, 'error');
+      }
+    }
+
+    async function startGame() {
+      if (!pyodide || gameRunning) return;
+
+      try {
+        updateStatus('Starting game...', 'normal');
+        gameRunning = true;
+        updateControls();
+
+        await pyodide.runPythonAsync(`
+import os
+import sys
+import asyncio
+import pygame
+
+# Configure SDL for web
+os.environ['SDL_EMSCRIPTEN_CANVAS_SELECTOR'] = '#game-canvas'
+
+# Initialize pygame
+pygame.init()
+screen = pygame.display.set_mode((640, 480))
+pygame.display.set_caption("PyGame Test")
+
+# Game variables
+clock = pygame.time.Clock()
+player_pos = [320, 240]
+player_color = (243, 156, 18)  # Orange
+bg_color = (34, 53, 73)        # Dark blue
+running = True
+
+async def game_loop():
+    global running, player_pos
+    
+    while running:
+        # Handle events
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        
+        # Handle input
+        keys = pygame.key.get_pressed()
+        speed = 5
+        
+        if keys[pygame.K_LEFT] or keys[pygame.K_a]:
+            player_pos[0] = max(50, player_pos[0] - speed)
+        if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+            player_pos[0] = min(590, player_pos[0] + speed)
+        if keys[pygame.K_UP] or keys[pygame.K_w]:
+            player_pos[1] = max(50, player_pos[1] - speed)
+        if keys[pygame.K_DOWN] or keys[pygame.K_s]:
+            player_pos[1] = min(430, player_pos[1] + speed)
+        
+        # Clear screen
+        screen.fill(bg_color)
+        
+        # Draw player (circle)
+        pygame.draw.circle(screen, player_color, player_pos, 50)
+        
+        # Draw border
+        pygame.draw.rect(screen, (100, 100, 100), (0, 0, 640, 480), 2)
+        
+        # Update display
+        pygame.display.flip()
+        
+        # Control frame rate
+        clock.tick(60)
+        
+        # Yield control back to browser
+        await asyncio.sleep(0)
+
+# Start the game loop
+await game_loop()
+pygame.quit()
+        `);
+
+        updateStatus('Game completed', 'success');
+      } catch (error) {
+        console.error('Game error:', error);
+        updateStatus(`Game error: ${error.message}`, 'error');
+      } finally {
+        gameRunning = false;
+        updateControls();
+      }
+    }
+
+    async function stopGame() {
+      if (!gameRunning) return;
+      
+      try {
+        await pyodide.runPython(`
+if 'running' in globals():
+    running = False
+        `);
+        updateStatus('Game stopped', 'normal');
+      } catch (error) {
+        console.error('Stop error:', error);
+        updateStatus('Stop failed', 'error');
+      }
+    }
+
+    // Focus canvas for keyboard input
+    canvas.addEventListener('click', () => {
+      canvas.focus();
+    });
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializePyodide);
+    } else {
+      initializePyodide();
+    }
+
+    // Handle page unload
+    window.addEventListener('beforeunload', () => {
+      if (gameRunning) {
+        stopGame();
+      }
+    });
   </script>
 </body>
 </html>
